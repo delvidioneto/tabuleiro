@@ -1,0 +1,95 @@
+:root {
+  --tableHeight: 100%;
+  --tableWidth: 100%;
+  --colorColuna: #094780;
+  --fontSizeCol: 30px;
+  --colorfontColuna: #ffffff;
+  --colorLinha: #094780;
+  --fontSizeLin: 0px;
+  --colorFontLinha: #ffffff;
+  --vQuadColor: #ffffff;
+  --vQuadcolorfont: #ffffff;
+  --lineSize: 30px;
+}
+table {
+  width: var(--tableWidth);
+  height: var(--tableHeight);
+  cursor: default;
+}
+table.tbMom {
+  border: 1px solid;
+}
+tr {
+  border: 1px solid black;
+}
+th.cblh {
+  background-color: rgba(var(--colorColuna), 1);
+  font-size: var(--fontSizeCol);
+  text-align: center;
+  color: var(--colorfontColuna);
+  height: 50px;
+}
+td.cblh {
+  background-color: rgba(var(--colorLinha), 1);
+  font-size: var(--fontSizeLin);
+  text-align: center;
+  color: black;
+  color: var(--colorFontLinha);
+}
+td.quadColor1 {
+  background-color: rgba(var(--vQuadColor), 1);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor1:nth-child(2) {
+  background: rgba(var(--vQuadColor), 0.5);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor1:nth-child(3) {
+  background: rgba(var(--vQuadColor), 0.25);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor2 {
+  background: rgba(var(--vQuadColor), 0.25);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor2:nth-child(2) {
+  background-color: rgba(var(--vQuadColor), 1);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor2:nth-child(3) {
+  background: rgba(var(--vQuadColor), 0.5);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor3 {
+  background: rgba(var(--vQuadColor), 0.5);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor3:nth-child(2) {
+  background: rgba(var(--vQuadColor), 0.25);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+td.quadColor3:nth-child(3) {
+  background-color: rgba(var(--vQuadColor), 1);
+  text-align: center;
+  height: var(--lineSize);
+  width: var(--lineSize);
+}
+
+
+/*# sourceMappingURL=https://localhost:8080/assets/visual.css.map*/

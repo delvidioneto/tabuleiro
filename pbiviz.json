@@ -1,0 +1,25 @@
+{
+    "visual": {
+        "name": "tabuleiro",
+        "displayName": "Tabuleiro",
+        "guid": "tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6",
+        "visualClassName": "Visual",
+        "version": "1.0.0",
+        "description": "Tabuleiro de dados, cria uma matriz 3x3 dentro de uma matriz N x N.",
+        "supportUrl": "email",
+        "gitHubUrl": "null"
+    },
+    "apiVersion": "5.1.0",
+    "author": {
+        "name": "Delvidio Demarchi Neto",
+        "email": "delvidio.neto@outlook.com"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "externalJS": null,
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": []
+}

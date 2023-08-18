@@ -1,0 +1,253 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Linhas",
+            "name": "linhas",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Colunas",
+            "name": "colunas",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Quadrante 1",
+            "name": "qdrt1",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 2",
+            "name": "qdrt2",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 3",
+            "name": "qdrt3",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 4",
+            "name": "qdrt4",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 5",
+            "name": "qdrt5",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 6",
+            "name": "qdrt6",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 7",
+            "name": "qdrt7",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 8",
+            "name": "qdrt8",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Quadrante 9",
+            "name": "qdrt9",
+            "kind": "Measure"
+        }
+    ],
+    "dataViewMappings": [
+        {
+            "conditions": [
+                {
+                    "linhas": {
+                        "max": 1
+                    },
+                    "colunas": {
+                        "max": 1
+                    },
+                    "qdrt1": {
+                        "max": 1
+                    },
+                    "qdrt2": {
+                        "max": 1
+                    },
+                    "qdrt3": {
+                        "max": 1
+                    },
+                    "qdrt4": {
+                        "max": 1
+                    },
+                    "qdrt5": {
+                        "max": 1
+                    },
+                    "qdrt6": {
+                        "max": 1
+                    },
+                    "qdrt7": {
+                        "max": 1
+                    },
+                    "qdrt8": {
+                        "max": 1
+                    },
+                    "qdrt9": {
+                        "max": 1
+                    }
+                }
+            ],
+            "matrix": {
+                "rows": {
+                    "for": {
+                        "in": "linhas"
+                    }
+                },
+                "columns": {
+                    "for": {
+                        "in": "colunas"
+                    }
+                },
+                "values": {
+                    "select": [
+                        {
+                            "bind": {
+                                "to": "qdrt1"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt2"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt3"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt4"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt5"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt6"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt7"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt8"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "qdrt9"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "objects": {
+        "dataColunas": {
+            "properties": {
+                "colorColuna": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "colorfontColuna": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "fontSizeCol": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                }
+            }
+        },
+        "dataLinhas": {
+            "properties": {
+                "colorLinha": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "colorFontLinha": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "fontSizeLin": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                }                
+            }
+        },
+        "dataQuadrante": {
+            "properties": {
+                "colorCell1": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "colorCell2": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "colorCell3": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "privileges": []
+}

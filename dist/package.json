@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "author": {"name":"Delvidio Demarchi Neto","email":"delvidio.neto@outlook.com"},
+    "resources": [
+        {
+            "resourceId": "rId0",
+            "sourceType": 5,
+            "file": "resources/tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6.pbiviz.json"
+        }
+    ],
+    "visual": {"name":"tabuleiro","displayName":"Tabuleiro","guid":"tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6","visualClassName":"Visual","version":"1.0.0","description":"Tabuleiro de dados, cria uma matriz 3x3 dentro de uma matriz N x N.","supportUrl":"email","gitHubUrl":"null"},
+    "metadata": {
+        "pbivizjson": {
+            "resourceId": "rId0"
+        }
+    }  
+}

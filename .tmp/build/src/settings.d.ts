@@ -23,8 +23,8 @@ declare class getConfigLinhas extends FormattingSettingsCard {
 }
 declare class getConfigQuadrante extends FormattingSettingsCard {
     defaultColor: formattingSettings.ColorPicker;
-    vldColor1: formattingSettings.ColorPicker;
-    vldColor2: formattingSettings.ColorPicker;
+    quadcolor1: formattingSettings.ColorPicker;
+    quadcolor2: formattingSettings.ColorPicker;
     name: string;
     displayName: string;
     slices: Array<FormattingSettingsSlice>;

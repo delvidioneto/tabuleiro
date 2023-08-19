@@ -97,24 +97,24 @@ class getConfigQuadrante extends FormattingSettingsCard {
         super(...arguments);
         this.defaultColor = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
             name: "defaultColor",
-            displayName: "Cor Padrão",
-            value: { value: "#A9D08E" }
+            displayName: "Nível Bom",
+            value: { value: "#80D489" }
         });
-        this.vldColor1 = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
-            name: "vldColor1",
-            displayName: "Cor Validação 1",
-            value: { value: "#ffffff" }
+        this.quadcolor1 = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
+            name: "quadcolor1",
+            displayName: "Nível Médio",
+            value: { value: "#E8D166" }
         });
-        this.vldColor2 = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
-            name: "vldColor2",
-            displayName: "Cor Validação 2",
-            value: { value: "#ffffff" }
+        this.quadcolor2 = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
+            name: "quadcolor2",
+            displayName: "Nível Ruim",
+            value: { value: "#E68F96" }
         });
         this.name = "dataQuadrante";
         this.displayName = "Ajuste de Quadrantes";
         this.slices = [this.defaultColor,
-            this.vldColor1,
-            this.vldColor2];
+            this.quadcolor1,
+            this.quadcolor2];
     }
 }
 /** visual settings model class **/
@@ -150,8 +150,9 @@ class Visual {
         this.formattingSettingsService = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z();
         this.target = options.element;
         if (document) {
+            this.div = document.createElement("div");
             this.table = document.createElement("table");
-            this.target.appendChild(this.table);
+            this.target.appendChild(this.div);
         }
     }
     update(options) {
@@ -167,6 +168,8 @@ class Visual {
         const tableRow = options.dataViews[0].matrix.rows.root.children;
         const qtdMetadata = options.dataViews[0].metadata.columns.length;
         // variaveis de visual
+        const tableHeight = options.viewport.height;
+        const tableWidth = options.viewport.width;
         const colorColuna = this.formattingSettings.dataColunasCard.colorColuna.value.value;
         const colorfontColuna = this.formattingSettings.dataColunasCard.colorfontColuna.value.value;
         const fontSizeCol = this.formattingSettings.dataColunasCard.fontSizeCol.value.toString();
@@ -174,8 +177,12 @@ class Visual {
         const colorFontLinha = this.formattingSettings.dataLinhasCard.colorFontLinha.value.value;
         const fontSizeLin = this.formattingSettings.dataLinhasCard.fontSizeLin.value.toString();
         const defaultColor = this.formattingSettings.dataQuadranteCard.defaultColor.value.value;
-        const vldColor1 = this.formattingSettings.dataQuadranteCard.vldColor1.value.value;
-        const vldColor2 = this.formattingSettings.dataQuadranteCard.vldColor2.value.value;
+        const quadcolor1 = this.formattingSettings.dataQuadranteCard.defaultColor.value.value;
+        const quadcolor2 = this.formattingSettings.dataQuadranteCard.defaultColor.value.value;
+        this.div.setAttribute("class", "master");
+        this.div.style.setProperty("--tableHeight", tableHeight.toString() + 'px');
+        this.div.style.setProperty("--tableWidth", tableWidth.toString() + 'px');
+        console.log(quadcolor1, defaultColor);
         // Transforma Cor Hexa em RGB
         function hexToRgb(hex) {
             var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -186,12 +193,7 @@ class Visual {
             } : null;
             return `${rgb.r},${rgb.g},${rgb.b}`;
         }
-        // let colorCell2 = <string>this.formattingSettings.dataPointCard.colorCell2.value.value;
-        // let colorCell3 = <string>this.formattingSettings.dataPointCard.colorCell3.value.value;
         let validador = this.formattingSettings;
-        //  console.log(validador);
-        // console.log(colorLinha);
-        // console.log(colorCell1);
         if (!tableColumn[0].value || !tableRow[0].value || qtdMetadata <= 10) {
             this.table.innerHTML = "Nessário inserir Linhas e Colunas";
         }
@@ -210,10 +212,6 @@ class Visual {
                         const tableRowQndCell = document.createElement("tr");
                         for (let k = 0; k < 3; k++) {
                             const tableDefineQndCell = document.createElement("td");
-                            console.log(tableQnd);
-                            tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(defaultColor));
-                            // tableDefineQndCell.style.setProperty("--colorCell2", hexToRgb(vldColor1))
-                            // tableDefineQndCell.style.setProperty("--colorCell3", hexToRgb(vldColor2))
                             if (j === 0) {
                                 tableDefineQndCell.setAttribute("class", "quadColor1");
                             }
@@ -223,6 +221,9 @@ class Visual {
                             else {
                                 tableDefineQndCell.setAttribute("class", "quadColor3");
                             }
+                            // tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(defaultColor))
+                            tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(quadcolor1));
+                            // tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(quadcolor1))
                             tableDefineQndCell.innerHTML = tableRow[line].values[qndCount].value;
                             tableRowQndCell.appendChild(tableDefineQndCell);
                             qndCount++;
@@ -252,6 +253,7 @@ class Visual {
             // Cria linhas
             for (let i = 0; i < tableRow.length; i++) {
                 const tableRowBody = document.createElement("tr");
+                tableRowBody.setAttribute("id", i.toString());
                 for (let j = -1; j < colLen; j++) {
                     const tableDefineRow = document.createElement("td");
                     if (j < 0) {
@@ -263,6 +265,7 @@ class Visual {
                     }
                     else {
                         tableDefineRow.appendChild(getCriaQuadrant(i, colLen));
+                        tableDefineRow.setAttribute("id", j.toString());
                     }
                     tableRowBody.appendChild(tableDefineRow);
                 }
@@ -271,8 +274,7 @@ class Visual {
             }
             // Imprime a tabela
             this.table.appendChild(tableBody);
-            // this.table.style.setProperty("--tableHeight", tableHeight.toString());
-            // this.table.style.setProperty("--tableWidth", tableWidth.toString());
+            this.div.appendChild(this.table);
         }
     }
     getFormattingModel() {

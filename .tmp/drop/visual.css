@@ -2,22 +2,31 @@
   --tableHeight: 100%;
   --tableWidth: 100%;
   --colorColuna: #094780;
-  --fontSizeCol: 30px;
+  --fontSizeCol: 10%;
   --colorfontColuna: #ffffff;
   --colorLinha: #094780;
-  --fontSizeLin: 0px;
+  --fontSizeLin: 10%;
   --colorFontLinha: #ffffff;
-  --vQuadColor: #ffffff;
-  --vQuadcolorfont: #ffffff;
-  --lineSize: 30px;
+  --vQuadColor: #a9d08e;
+  --lineSize: 10%;
 }
-table {
+div.master {
+  overflow-y: scroll;
+  overflow-x: scroll;
   width: var(--tableWidth);
   height: var(--tableHeight);
+}
+table {
+  width: 100%;
+  height: 100%;
+  padding-left: 0px;
+  margin-left: 0px;
   cursor: default;
 }
 table.tbMom {
   border: 1px solid;
+  width: 100%;
+  height: 100%;
 }
 tr {
   border: 1px solid black;

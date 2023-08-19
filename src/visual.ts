@@ -7,12 +7,18 @@ import "./../style/visual.less";
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
-
+import EnumerateVisualObjectInstancesOptions = powerbi.EnumerateVisualObjectInstancesOptions;
+import VisualObjectInstance = powerbi.VisualObjectInstance;
+import DataView = powerbi.DataView;
+import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnumerationObject;
+import VisualEnumerationInstanceKinds = powerbi.VisualEnumerationInstanceKinds;
+import { dataViewWildcard } from "powerbi-visuals-utils-dataviewutils";
 import { VisualFormattingSettingsModel } from "./settings";
 
 export class Visual implements IVisual {
     private target: HTMLElement;
     private table: HTMLElement;
+    private div: HTMLElement;
     private formattingSettings: VisualFormattingSettingsModel;
     private formattingSettingsService: FormattingSettingsService;
 
@@ -20,9 +26,12 @@ export class Visual implements IVisual {
         // console.log('Visual constructor', options);
         this.formattingSettingsService = new FormattingSettingsService();
         this.target = options.element;
+
         if (document) {
+            this.div = document.createElement("div");
             this.table = document.createElement("table");
-            this.target.appendChild(this.table);
+            this.target.appendChild( this.div);
+            
         }
     }
 
@@ -34,7 +43,9 @@ export class Visual implements IVisual {
 
         // Variaveis de criação da tabela
         const tableHeader: HTMLElement = document.createElement("thead");
+        
         tableHeader.setAttribute("class", "tbMom")
+
         const tableColumn = options.dataViews[0].matrix.columns.root.children;
         const colLen = tableColumn.length;
         const tableBody: HTMLElement = document.createElement("tbody");
@@ -42,6 +53,8 @@ export class Visual implements IVisual {
         const qtdMetadata = options.dataViews[0].metadata.columns.length;
 
         // variaveis de visual
+        const tableHeight = options.viewport.height;
+        const tableWidth = options.viewport.width;
 
         const colorColuna = <string>this.formattingSettings.dataColunasCard.colorColuna.value.value;
         const colorfontColuna = <string>this.formattingSettings.dataColunasCard.colorfontColuna.value.value;
@@ -50,11 +63,16 @@ export class Visual implements IVisual {
         const colorLinha = <string>this.formattingSettings.dataLinhasCard.colorLinha.value.value;
         const colorFontLinha = <string>this.formattingSettings.dataLinhasCard.colorFontLinha.value.value;
         const fontSizeLin = <string>this.formattingSettings.dataLinhasCard.fontSizeLin.value.toString();
-
-
+        
         const defaultColor = <string>this.formattingSettings.dataQuadranteCard.defaultColor.value.value;
-        const vldColor1 = <string>this.formattingSettings.dataQuadranteCard.vldColor1.value.value;
-        const vldColor2 = <string>this.formattingSettings.dataQuadranteCard.vldColor2.value.value;
+        const quadcolor1 = <string>this.formattingSettings.dataQuadranteCard.defaultColor.value.value;
+        const quadcolor2 = <string>this.formattingSettings.dataQuadranteCard.defaultColor.value.value;
+        
+        this.div.setAttribute("class", "master")
+        this.div.style.setProperty("--tableHeight", tableHeight.toString()+'px');
+        this.div.style.setProperty("--tableWidth", tableWidth.toString()+'px');
+
+        console.log(quadcolor1, defaultColor)
 
 // Transforma Cor Hexa em RGB
         function hexToRgb(hex) {
@@ -67,15 +85,7 @@ export class Visual implements IVisual {
             return `${rgb.r},${rgb.g},${rgb.b}`
           }
 
-
-        // let colorCell2 = <string>this.formattingSettings.dataPointCard.colorCell2.value.value;
-        // let colorCell3 = <string>this.formattingSettings.dataPointCard.colorCell3.value.value;
-
          let validador = this.formattingSettings;
-        //  console.log(validador);
-
-        // console.log(colorLinha);
-        // console.log(colorCell1);
 
         if (!tableColumn[0].value || !tableRow[0].value || qtdMetadata <= 10) {
 
@@ -91,9 +101,10 @@ export class Visual implements IVisual {
             
             // Função Criar quadrantes de medidas
             function getCriaQuadrant(line: number, columns: number) {
-                for (let i = 0; i < columns; i++) {
+                for (let i = 0; i < columns; i++) {                   
 
                     const tableQnd: HTMLElement = document.createElement("table");
+
                     tableQnd.setAttribute("class", "tbSon")
 
                     for (let j = 0; j < 3; j++) {
@@ -101,13 +112,8 @@ export class Visual implements IVisual {
 
                         for (let k = 0; k < 3; k++) {
                             const tableDefineQndCell: HTMLElement = document.createElement("td");
-
-                            console.log(tableQnd)
-
-                            tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(defaultColor))
-
-                            // tableDefineQndCell.style.setProperty("--colorCell2", hexToRgb(vldColor1))
-                            // tableDefineQndCell.style.setProperty("--colorCell3", hexToRgb(vldColor2))
+                            
+                            
 
                             if (j === 0) {
                                 tableDefineQndCell.setAttribute("class", "quadColor1")
@@ -117,15 +123,24 @@ export class Visual implements IVisual {
                                 tableDefineQndCell.setAttribute("class", "quadColor3")
                             }
 
+                            // tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(defaultColor))
+                            tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(quadcolor1))   
+                            
+                           
+                            // tableDefineQndCell.style.setProperty("--vQuadColor", hexToRgb(quadcolor1))
+                            
+
                             tableDefineQndCell.innerHTML = <string>tableRow[line].values[qndCount].value;
                             tableRowQndCell.appendChild(tableDefineQndCell)
                             qndCount++
                         }
                         tableQnd.appendChild(tableRowQndCell)
-                    }
+                    }  
                     return tableQnd
                 }
             }
+
+            
 
             //Cria cabeçalho da tabela
             for (let i = -1; i < tableColumn.length; i++) {
@@ -149,9 +164,11 @@ export class Visual implements IVisual {
             for (let i = 0; i < tableRow.length; i++) {
 
                 const tableRowBody: HTMLElement = document.createElement("tr");
+                tableRowBody.setAttribute("id", i.toString())
 
                 for (let j = -1; j < colLen; j++) {
                     const tableDefineRow: HTMLElement = document.createElement("td");
+
                     if (j < 0) {
                         tableDefineRow.innerHTML = <string>tableRow[i].value
                         tableDefineRow.setAttribute("class", "cblh")
@@ -161,7 +178,11 @@ export class Visual implements IVisual {
                         tableDefineRow.style.setProperty("--fontSizeLin", fontSizeLin + 'px')
                         
                     } else {
+
                         tableDefineRow.appendChild(getCriaQuadrant(i, colLen))
+                        tableDefineRow.setAttribute("id", j.toString())
+
+                       
                     }
                     tableRowBody.appendChild(tableDefineRow);
                 }
@@ -170,8 +191,8 @@ export class Visual implements IVisual {
             }
             // Imprime a tabela
             this.table.appendChild(tableBody);    
-            // this.table.style.setProperty("--tableHeight", tableHeight.toString());
-            // this.table.style.setProperty("--tableWidth", tableWidth.toString());
+           
+            this.div.appendChild(this.table)
         }        
     }
 
@@ -180,4 +201,3 @@ export class Visual implements IVisual {
     }
 
 }
-

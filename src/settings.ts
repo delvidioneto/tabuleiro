@@ -89,27 +89,26 @@ class getConfigQuadrante extends FormattingSettingsCard {
    
     defaultColor = new formattingSettings.ColorPicker({
         name: "defaultColor",
-        displayName: "Cor Padrão",
-        value: { value: "#A9D08E" }
+        displayName: "Nível Bom",
+        value: { value: "#80D489" }
+    });
+    quadcolor1 = new formattingSettings.ColorPicker({
+        name: "quadcolor1",
+        displayName: "Nível Médio",
+        value: { value: "#E8D166" }
     });
 
-    vldColor1 = new formattingSettings.ColorPicker({
-        name: "vldColor1",
-        displayName: "Cor Validação 1",
-        value: { value: "#ffffff" }
-    });
-
-    vldColor2 = new formattingSettings.ColorPicker({
-        name: "vldColor2",
-        displayName: "Cor Validação 2",
-        value: { value: "#ffffff" }
+    quadcolor2 = new formattingSettings.ColorPicker({
+        name: "quadcolor2",
+        displayName: "Nível Ruim",
+        value: { value: "#E68F96" }
     });
 
     name: string = "dataQuadrante";
     displayName: string = "Ajuste de Quadrantes";
     slices: Array<FormattingSettingsSlice> = [this.defaultColor,
-                                              this.vldColor1,
-                                              this.vldColor2];
+                                              this.quadcolor1,
+                                              this.quadcolor2];
 }
 /** visual settings model class **/
 

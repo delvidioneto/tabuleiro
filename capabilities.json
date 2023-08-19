@@ -66,6 +66,9 @@
                     "colunas": {
                         "max": 1
                     },
+                    "regraNegocios":{
+                        "max": 1
+                    },
                     "qdrt1": {
                         "max": 1
                     },
@@ -105,7 +108,7 @@
                     "for": {
                         "in": "colunas"
                     }
-                },
+                },                
                 "values": {
                     "select": [
                         {
@@ -219,7 +222,7 @@
         },
         "dataQuadrante": {
             "properties": {
-                "colorCell1": {
+                "defaultColor": {
                     "type": {
                         "fill": {
                             "solid": {
@@ -228,7 +231,7 @@
                         }
                     }
                 },
-                "colorCell2": {
+                "quadcolor1": {
                     "type": {
                         "fill": {
                             "solid": {
@@ -237,7 +240,7 @@
                         }
                     }
                 },
-                "colorCell3": {
+                "quadcolor2": {
                     "type": {
                         "fill": {
                             "solid": {
@@ -245,8 +248,22 @@
                             }
                         }
                     }
-                }
+                }           
             }
+        }
+    },
+    "sorting": {
+        "implicit": {
+            "clauses": [
+                {
+                    "role": "Colunas",
+                    "direction": 1
+                },
+                {
+                    "role": "linhas",
+                    "direction": 1
+                }
+            ]
         }
     },
     "privileges": []

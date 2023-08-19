@@ -6,6 +6,7 @@ import IVisual = powerbi.extensibility.visual.IVisual;
 export declare class Visual implements IVisual {
     private target;
     private table;
+    private div;
     private formattingSettings;
     private formattingSettingsService;
     constructor(options: VisualConstructorOptions);

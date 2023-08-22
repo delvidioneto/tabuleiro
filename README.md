@@ -1,4 +1,4 @@
-# tabuleiro
+# Tabuleiro 1.5.0
 
 Visual Personalizado do Power BI no formato de um Tabuleiro de xadrez. 
 

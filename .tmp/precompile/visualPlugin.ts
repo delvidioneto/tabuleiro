@@ -5,8 +5,8 @@ import VisualConstructorOptions = powerbiVisualsApi.extensibility.visual.VisualC
 import DialogConstructorOptions = powerbiVisualsApi.extensibility.visual.DialogConstructorOptions;
 var powerbiKey: any = "powerbi";
 var powerbi: any = window[powerbiKey];
-var tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6: IVisualPlugin = {
-    name: 'tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6',
+var tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6_DEBUG: IVisualPlugin = {
+    name: 'tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6_DEBUG',
     displayName: 'Tabuleiro',
     class: 'Visual',
     apiVersion: '5.1.0',
@@ -27,6 +27,6 @@ var tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6: IVisualPlugin = {
 if (typeof powerbi !== "undefined") {
     powerbi.visuals = powerbi.visuals || {};
     powerbi.visuals.plugins = powerbi.visuals.plugins || {};
-    powerbi.visuals.plugins["tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6"] = tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6;
+    powerbi.visuals.plugins["tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6_DEBUG"] = tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6_DEBUG;
 }
-export default tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6;
+export default tabuleiro06F3D1A101B34DE8841D25CC8D26A7C6_DEBUG;

@@ -90,7 +90,7 @@ export class Visual implements IVisual {
 
          let validador = this.formattingSettings;
 
-        if (!tableColumn[0].value || !tableRow[0].value || qtdMetadata <= 10) {
+        if (!tableColumn[0].value || !tableRow[0].value || qtdMetadata <= 1) {
 
             this.table.innerHTML = "Nessário inserir Linhas e Colunas"
 
@@ -104,8 +104,8 @@ export class Visual implements IVisual {
             
             // Função Criar quadrantes de medidas
             function getCriaQuadrant(line: number, columns: number) {
-                for (let i = 0; i < columns; i++) {                   
-
+                
+                for (let i = 0; i < columns; i++) {
                     const tableQnd: HTMLElement = document.createElement("table");
 
                     tableQnd.setAttribute("class", "tbSon")
@@ -116,8 +116,6 @@ export class Visual implements IVisual {
 
                         for (let k = 0; k < 3; k++) {
                             const tableDefineQndCell: HTMLElement = document.createElement("td");
-                            
-                            
 
                             if (j === 0) {
                                 tableDefineQndCell.setAttribute("class", "quadColor1")
@@ -126,17 +124,28 @@ export class Visual implements IVisual {
                             } else {
                                 tableDefineQndCell.setAttribute("class", "quadColor3")
                             }
+                            
+                            console.log(qtdMetadata)
 
-                            tableDefineQndCell.innerHTML = <string>tableRow[line].values[qndCount].value;
-                            tableRowQndCell.appendChild(tableDefineQndCell)
+                            if (qtdMetadata >= 10) {
+                                tableDefineQndCell.innerHTML = <string>tableRow[line].values[qndCount].value;
+                                tableRowQndCell.appendChild(tableDefineQndCell)
+                            } else {
+                                tableDefineQndCell.innerHTML = " ";
+                                tableRowQndCell.appendChild(tableDefineQndCell);
+
+                                console.log("tableDefineQndCell")
+                            }
+
                             qndCount++
                         }
                         tableQnd.appendChild(tableRowQndCell)
                         // qndCount = 0
-
                     }  
                     return tableQnd
                 }
+
+
             }
 
             //Cria cabeçalho da tabela
